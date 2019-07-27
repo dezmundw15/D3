@@ -36,7 +36,7 @@ d3.csv("assets/data/data.csv")
   // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([8, d3.max(data, d => d.poverty)])
+      .domain([10, d3.max(data, d => d.poverty)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
@@ -103,12 +103,11 @@ d3.csv("assets/data/data.csv")
 
       chartGroup
         .append('g')
-        .attr('transform', `translate(0, ${height})`)
+        .attr('transform', `translate(0, ${chartHeight})`)
         .call(bottomAxis);
   
       chartGroup.append('g').call(leftAxis);
-      console.log ("pending..")
-
+  
       chartGroup.selectAll(".dot")
       .data(data)
       .enter()
@@ -129,14 +128,14 @@ d3.csv("assets/data/data.csv")
       .attr("transform", "rotate(-90)")
       .attr("y", 0 - margin.left + 40)
       .attr("x", 0 - (height / 2))
-      .attr("dy", "0.6em")
+      .attr("dy", "1em")
       .attr("class", "axisText")
       .text("Lacks Healthcare %");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Poverty %");
+      .text("In Poverty %");
 
     circleLabels.text(function(data,i){return data.abbr})
     console.log();
